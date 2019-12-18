@@ -12,9 +12,6 @@
 #include <stdio.h>
 
 typedef struct {
-    int a;
-    int b;
-
 } CommandLineParser;
 
 #endif /* command_line_parser_h */

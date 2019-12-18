@@ -9,6 +9,8 @@
 #include "application.h"
 #include <stdlib.h>
 
+#include "module/gmc_hash.h"
+
 AppLog* initAppLog(void){
     AppLog* ptr;
     ptr = (AppLog *)malloc(sizeof(AppLog));
