@@ -7,6 +7,7 @@
 //
 
 #include "command_line_parser.h"
+#include <stdlib.h>
 
 void _printHelp()
 {
@@ -35,10 +36,12 @@ int _startCommandLineParser(int argc, const char** argv){
     for (argc--; argc >= 0; argc--) {
         if (strcmp(*argv,"--help") == 0){
             _printHelp();
+            exit(EXIT_SUCCESS);
             break;
         }
         if (strcmp(*argv,"-v") == 0){
             printf("[gmc chain] v0.1.0-debug \n");
+            exit(EXIT_SUCCESS);
             break;
         }
         argv++;
