@@ -10,6 +10,7 @@
 #define gmc_hash_h
 
 #include <stdio.h>
+#include "basetypes.h"
 
 
 #define GMCHASH_MAX_LENGTH 1024

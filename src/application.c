@@ -8,6 +8,7 @@
 
 #include "application.h"
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "module/gmc_hash.h"
 
@@ -71,8 +72,8 @@ P2PNetworking* initP2PNetworking(){
     return ptr;
 }
 
-int checkReady(void){
-    return 1;
+bool checkReady(void){
+    return true;
 }
 
 void start(void){

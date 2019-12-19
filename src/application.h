@@ -10,6 +10,7 @@
 #define application_h
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "app_log.h"
 #include "command_line_parser.h"
 #include "runtime_env.h"
@@ -36,7 +37,7 @@ Block* initBlock(void);
 BlockDB* initBlockDB(void);
 HyperNode* initHyperNode(void);
 P2PNetworking* initP2PNetworking(void);
-int checkReady(void);
+bool checkReady(void);
 void start(void);
 
 

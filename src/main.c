@@ -8,7 +8,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "application.h"
+#include "basetypes.h"
 
 int main(int argc, const char * argv[]) {
     AppLog* applog = initAppLog();
@@ -21,12 +23,14 @@ int main(int argc, const char * argv[]) {
     BlockDB* block_db = initBlockDB();
     HyperNode* hyper_node = initHyperNode();
     P2PNetworking* p2p_networking = initP2PNetworking();
-    int result = checkReady();
+    bool result = checkReady();
     if (result){
         start();
     }else{
         printf("initialize failed!\n");
         return EXIT_FAILURE;
     }
+    
+    printf("[gmchain] hello ci6~");
     return 0;
 }
