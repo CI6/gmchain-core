@@ -11,7 +11,15 @@
 
 #include <stdio.h>
 
+void _printHelp(void);
+int _startCommandLineParser(int argc, const char ** argv);
+
+
 typedef struct {
+    void (*printHelp)(void);
+    int (*startCommandLineParser)(int, const char**);
 } CommandLineParser;
+
+CommandLineParser* registerCommandLineMethods(CommandLineParser*);
 
 #endif /* command_line_parser_h */

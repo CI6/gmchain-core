@@ -33,4 +33,6 @@
 
 *.DS_Store
 
+/bin
+/out
 /gmchain-core.xcodeproj

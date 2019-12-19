@@ -12,7 +12,7 @@
 #include "application.h"
 #include "basetypes.h"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, char** argv) {
     AppLog* applog = initAppLog();
     CommandLineParser* command_line_parser = initCommandLineParser(argc, argv);
     RuntimeEnv* run_time_env = initEnv();
@@ -31,6 +31,6 @@ int main(int argc, const char * argv[]) {
         return EXIT_FAILURE;
     }
     
-    printf("[gmchain] hello ci6~");
-    return 0;
+    printf("[gmchain] hello ci6~\n");
+    return EXIT_SUCCESS;
 }

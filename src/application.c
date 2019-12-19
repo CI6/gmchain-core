@@ -18,9 +18,14 @@ AppLog* initAppLog(void){
     return ptr;
 };
 
-CommandLineParser* initCommandLineParser(int argc, const char * argv[]){
+CommandLineParser* initCommandLineParser(int argc, const char** argv){
     CommandLineParser* ptr;
     ptr = (CommandLineParser *)malloc(sizeof(CommandLineParser));
+    registerCommandLineMethods(ptr);
+    
+    // todo remove test
+    ptr->startCommandLineParser(argc, argv);
+    
     return ptr;
 };
 
