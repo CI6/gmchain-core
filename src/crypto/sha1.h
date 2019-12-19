@@ -41,10 +41,11 @@ void Sha1Final(
 void Sha1(
     char *hash_out,
     const char *str,
-    int len);
+    int len
+    );
 
 char* Sha1Hex(
     char *hex_out,
     const char *str 
-);
+    );
 #endif /* SHA1_H */
