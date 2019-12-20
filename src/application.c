@@ -10,8 +10,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "module/gmc_hash.h"
-
 AppLog* initAppLog(void){
     AppLog* ptr;
     ptr = (AppLog *)malloc(sizeof(AppLog));
@@ -21,10 +19,8 @@ AppLog* initAppLog(void){
 CommandLineParser* initCommandLineParser(int argc, const char** argv){
     CommandLineParser* ptr;
     ptr = (CommandLineParser *)malloc(sizeof(CommandLineParser));
-    registerCommandLineMethods(ptr);
-    
-    // todo remove test
-    ptr->startCommandLineParser(argc, argv);
+    registerCommandLineInstance(ptr);
+    startCommandLineParser(argc, argv, ptr->setting);
     
     return ptr;
 };

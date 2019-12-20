@@ -49,4 +49,8 @@ typedef unsigned long long uint64_t;
 #define    EXIT_SUCCESS    0
 #endif
 
+#ifndef CMP_SUCCESS
+#define    CMP_SUCCESS    0
+#endif
+
 #endif /* basetypes_h */
