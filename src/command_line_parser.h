@@ -10,6 +10,7 @@
 #define command_line_parser_h
 
 #include <stdio.h>
+#include "basetypes.h"
 
 typedef struct {
     char dbpath[240];
