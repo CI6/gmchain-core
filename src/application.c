@@ -96,4 +96,5 @@ void appClear(){
     free(App->storage_manage);
     free(App->temp_manage);
     free(App->chain_manage);
+    free(App);
 }
