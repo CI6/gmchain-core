@@ -17,28 +17,33 @@
 #include "keypair_manage.h"
 #include "crypto_manage.h"
 #include "storage_manage.h"
-#include "chain/block.h"
-#include "chain/block_db.h"
-#include "chain/hyper_node.h"
-#include "network/p2p_networking.h"
+#include "chain_manage.h"
+#include "temp_manage.h"
 
 typedef struct {
-    CommandLineParser* config;
+    AppLog* applog;
+    CommandLineParser* command_line_parser;
     RuntimeEnv* env;
+    KeyPairManage* key_pair_manage;
+    CryptoManage* crypto_manage;
+    StorageManage* storage_manage;
+    TempManage* temp_manage;
+    ChainManage* chain_manage;
 } Application;
 
-AppLog * initAppLog(void);
-CommandLineParser* initCommandLineParser(int, const char**);
-RuntimeEnv* initEnv(void);
-KeyPairManage* initKeyPairManage(void);
-CryptoManage* initCryptoManage(void);
-StorageManage* initStorageManage(void);
-Block* initBlock(void);
-BlockDB* initBlockDB(void);
-HyperNode* initHyperNode(void);
-P2PNetworking* initP2PNetworking(void);
+void initialize(int, const char**);
+
+static AppLog * initAppLog(void);
+static CommandLineParser* initCommandLineParser(int, const char**);
+static RuntimeEnv* initEnv(void);
+static KeyPairManage* initKeyPairManage(void);
+static CryptoManage* initCryptoManage(void);
+static StorageManage* initStorageManage(void);
+static TempManage* initTempManage(void);
+static ChainManage* initChainManage(void);
+
 bool checkReady(void);
 void start(void);
-
+void appClear(void);
 
 #endif /* application_h */

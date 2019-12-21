@@ -10,6 +10,23 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+Application* App;
+
+void initialize(int argc, const char** argv){
+
+    App = (Application *)malloc(sizeof(Application));
+    App->applog = initAppLog();
+    App->command_line_parser = initCommandLineParser(argc, argv);
+    App->env = initEnv();
+    App->key_pair_manage = initKeyPairManage();
+    App->crypto_manage = initCryptoManage();
+    App->storage_manage = initStorageManage();
+    App->temp_manage = initTempManage();
+    App->chain_manage = initChainManage();
+    
+    return;
+}
+
 AppLog* initAppLog(void){
     AppLog* ptr;
     ptr = (AppLog *)malloc(sizeof(AppLog));
@@ -20,8 +37,9 @@ CommandLineParser* initCommandLineParser(int argc, const char** argv){
     CommandLineParser* ptr;
     ptr = (CommandLineParser *)malloc(sizeof(CommandLineParser));
     registerCommandLineInstance(ptr);
-    startCommandLineParser(argc, argv, ptr->setting);
     
+    // 这里只要初始化 , 不解析
+    // startCommandLineParser(argc, argv, ptr->setting);
     return ptr;
 };
 
@@ -49,27 +67,15 @@ StorageManage* initStorageManage(){
     return ptr;
 }
 
-Block* initBlock(){
-    Block* ptr;
-    ptr = (Block *)malloc(sizeof(Block));
+TempManage* initTempManage(){
+    TempManage* ptr;
+    ptr = (TempManage *)malloc(sizeof(TempManage));
     return ptr;
 }
 
-BlockDB* initBlockDB(){
-    BlockDB* ptr;
-    ptr = (BlockDB *)malloc(sizeof(BlockDB));
-    return ptr;
-}
-
-HyperNode* initHyperNode(){
-    HyperNode* ptr;
-    ptr = (HyperNode *)malloc(sizeof(HyperNode));
-    return ptr;
-}
-
-P2PNetworking* initP2PNetworking(){
-    P2PNetworking* ptr;
-    ptr = (P2PNetworking *)malloc(sizeof(P2PNetworking));
+ChainManage* initChainManage(){
+    ChainManage* ptr;
+    ptr = (ChainManage *)malloc(sizeof(ChainManage));
     return ptr;
 }
 
@@ -79,4 +85,15 @@ bool checkReady(void){
 
 void start(void){
     
+}
+
+void appClear(){
+    free(App->applog);
+    free(App->command_line_parser);
+    free(App->env);
+    free(App->key_pair_manage);
+    free(App->crypto_manage);
+    free(App->storage_manage);
+    free(App->temp_manage);
+    free(App->chain_manage);
 }
