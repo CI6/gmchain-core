@@ -21,6 +21,8 @@
 #include "temp_manage.h"
 
 typedef struct {
+    int argc;
+    const char** argv;
     AppLog* applog;
     CommandLineParser* command_line_parser;
     RuntimeEnv* env;
@@ -29,12 +31,16 @@ typedef struct {
     StorageManage* storage_manage;
     TempManage* temp_manage;
     ChainManage* chain_manage;
+    bool (*checkEnv)(void);
+    void (*start)(void);
+    void (*parserCommandLine)(void);
 } Application;
 
 void initialize(int, const char**);
+void appClear(void);
 
 static AppLog * initAppLog(void);
-static CommandLineParser* initCommandLineParser(int, const char**);
+static CommandLineParser* initCommandLineParser();
 static RuntimeEnv* initEnv(void);
 static KeyPairManage* initKeyPairManage(void);
 static CryptoManage* initCryptoManage(void);
@@ -42,8 +48,9 @@ static StorageManage* initStorageManage(void);
 static TempManage* initTempManage(void);
 static ChainManage* initChainManage(void);
 
-bool checkReady(void);
-void start(void);
-void appClear(void);
+void _parserCommandLine(void);
+bool _checkEnv(void);
+void _start(void);
+
 
 #endif /* application_h */

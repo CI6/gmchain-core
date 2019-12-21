@@ -15,15 +15,19 @@ Application* App;
 void initialize(int argc, const char** argv){
 
     App = (Application *)malloc(sizeof(Application));
+    App->argc = argc;
+    App->argv = argv;
     App->applog = initAppLog();
-    App->command_line_parser = initCommandLineParser(argc, argv);
+    App->command_line_parser = initCommandLineParser();
     App->env = initEnv();
     App->key_pair_manage = initKeyPairManage();
     App->crypto_manage = initCryptoManage();
     App->storage_manage = initStorageManage();
     App->temp_manage = initTempManage();
     App->chain_manage = initChainManage();
-    
+    App->parserCommandLine = _parserCommandLine;
+    App->checkEnv = _checkEnv;
+    App->start = _start;
     return;
 }
 
@@ -33,13 +37,10 @@ AppLog* initAppLog(void){
     return ptr;
 };
 
-CommandLineParser* initCommandLineParser(int argc, const char** argv){
+CommandLineParser* initCommandLineParser(){
     CommandLineParser* ptr;
     ptr = (CommandLineParser *)malloc(sizeof(CommandLineParser));
     registerCommandLineInstance(ptr);
-    
-    // 这里只要初始化 , 不解析
-    // startCommandLineParser(argc, argv, ptr->setting);
     return ptr;
 };
 
@@ -79,11 +80,15 @@ ChainManage* initChainManage(){
     return ptr;
 }
 
-bool checkReady(void){
+void _parserCommandLine(){
+    startCommandLineParser(App->argc, App->argv, App->command_line_parser->setting);
+}
+
+bool _checkEnv(void){
     return true;
 }
 
-void start(void){
+void _start(void){
     
 }
 

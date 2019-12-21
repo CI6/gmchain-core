@@ -17,17 +17,17 @@ extern Application* App;
 int main(int argc, const char** argv) {
     
     initialize(argc, argv);
+    App->parserCommandLine();
 
-    bool result;
-    result = checkReady();
-    
-    if (!result){
-        printf("initialize failed!\n");
-        appClear();
-        return EXIT_FAILURE;
-    }
-    
-    start();
+//    bool result;
+//    result = checkReady();
+//
+//    if (!result){
+//        printf("initialize failed!\n");
+//        appClear();
+//        return EXIT_FAILURE;
+//    }
+//    start();
     
     printf("[gmchain] hello ci6~\n");
     appClear();
