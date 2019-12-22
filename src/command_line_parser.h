@@ -13,10 +13,11 @@
 #include "basetypes.h"
 
 typedef struct {
-    char dbpath[240];
+    const char dbpath[240];
+    const char env[16];
     uint16_t p2p_listen_port;
     uint16_t rpc_listen_port;
-    char auth_id[640];
+    const char auth_id[640];
     bool start;
     bool test;
     bool daemonize;

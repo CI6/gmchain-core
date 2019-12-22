@@ -19,7 +19,7 @@ void initialize(int argc, const char** argv){
     App->argv = argv;
     App->applog = initAppLog();
     App->command_line_parser = initCommandLineParser();
-    App->env = initEnv();
+    App->env = initEnv(argv[0]);
     App->key_pair_manage = initKeyPairManage();
     App->crypto_manage = initCryptoManage();
     App->storage_manage = initStorageManage();
@@ -44,9 +44,11 @@ CommandLineParser* initCommandLineParser(){
     return ptr;
 };
 
-RuntimeEnv* initEnv(){
+RuntimeEnv* initEnv(char* root){
     RuntimeEnv* ptr;
     ptr = (RuntimeEnv *)malloc(sizeof(RuntimeEnv));
+    strlcpy(ptr->root,root,256);
+    registerRuntimeEnvInstance(ptr);
     return ptr;
 };
 

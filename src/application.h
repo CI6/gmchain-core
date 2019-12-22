@@ -40,8 +40,8 @@ void initialize(int, const char**);
 void appClear(void);
 
 static AppLog * initAppLog(void);
-static CommandLineParser* initCommandLineParser();
-static RuntimeEnv* initEnv(void);
+static CommandLineParser* initCommandLineParser(void);
+static RuntimeEnv* initEnv(char*);
 static KeyPairManage* initKeyPairManage(void);
 static CryptoManage* initCryptoManage(void);
 static StorageManage* initStorageManage(void);

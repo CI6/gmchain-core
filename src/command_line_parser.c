@@ -24,6 +24,7 @@ void _printHelp()
         "--auth-id=<id1,id2,id3>      bind the users of run this server (用于授权运行此服务的用户列表,可指定多个)",
         "--daemonize                  run at the background (进程后台daemonize化运行)",
         "start                        start the game master chain (启动GM链)",
+        "--env=<env>                  starting env params, eg: development,test,production"
         "test                         run the unit test (运行单元测试)",
         "--copyright                  print the copyright (打印 copyright)",
         NULL
@@ -136,6 +137,9 @@ void startCommandLineParser(int argc, const char** argv, CommandLineSetting* set
             if (strcmp(key,"--auth-id") == CMP_SUCCESS){
                 strlcpy(setting->auth_id,value,strlen(value)+1);
             }
+            if (strcmp(key,"--env") == CMP_SUCCESS){
+                strlcpy(setting->env,value,strlen(value)+1);
+            }
         }
         argv++;
         index++;
@@ -147,6 +151,7 @@ void startCommandLineParser(int argc, const char** argv, CommandLineSetting* set
 CommandLineParser* registerCommandLineInstance(CommandLineParser* obj){
     obj->setting = (CommandLineSetting*)malloc(sizeof(CommandLineSetting));
     memset(obj->setting->auth_id,'\0',640);
+    memset(obj->setting->env,'\0',16);
     memset(obj->setting->dbpath,'\0',240);
     obj->setting->p2p_listen_port = 0;
     obj->setting->rpc_listen_port = 0;

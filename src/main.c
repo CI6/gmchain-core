@@ -11,13 +11,15 @@
 #include <stdbool.h>
 #include "application.h"
 #include "basetypes.h"
-
-extern Application* App;
+#include "global.h"
 
 int main(int argc, const char** argv) {
     
     initialize(argc, argv);
     App->parserCommandLine();
+    
+    bool result = App->env->isProduction();
+    
 
 //    bool result;
 //    result = checkReady();
