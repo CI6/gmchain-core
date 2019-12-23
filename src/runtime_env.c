@@ -23,7 +23,7 @@ bool _isDevelopment(){
     return strcmp(KCEnvDevelopment, App->command_line_parser->setting->env) == CMP_SUCCESS;
 };
 
-void registerRuntimeEnvInstance(RuntimeEnv* env){
+void loadRuntimeEnvModule(RuntimeEnv* env){
     env->isProduction = _isProuction;
     env->isTest = _isTest;
     env->isDevelopment = _isDevelopment;

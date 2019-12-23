@@ -10,7 +10,9 @@
 #define global_h
 
 #include "application.h"
+#include "module/utils.h"
 
 extern Application* App;
+extern _Utils* Utils;
 
 #endif /* global_h */

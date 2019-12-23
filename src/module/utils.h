@@ -11,6 +11,14 @@
 
 #include <stdio.h>
 
-int stringToInt(char*);
+typedef struct {
+    int (*stringToInt)(char*);
+    char* (*nowTime)(char*);
+} _Utils;
+
+static int _stringToInt(char*);
+static char* _nowTime(char*);
+
+void LoadUtilsModule(void);
 
 #endif /* utils_h */

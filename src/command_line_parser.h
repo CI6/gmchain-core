@@ -31,6 +31,6 @@ typedef struct {
     CommandLineSetting* setting;
 } CommandLineParser;
 
-CommandLineParser* registerCommandLineInstance(CommandLineParser*);
+CommandLineParser* LoadCommandLineParserModule(CommandLineParser*);
 
 #endif /* command_line_parser_h */

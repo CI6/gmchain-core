@@ -10,6 +10,7 @@
 #include "command_line_parser.h"
 #include "basetypes.h"
 #include "module/utils.h"
+#include "global.h"
 
 
 void _printHelp()
@@ -129,10 +130,10 @@ void startCommandLineParser(int argc, const char** argv, CommandLineSetting* set
                 printf("gaga");
             }
             if (strcmp(key,"--p2p-listen-port") == CMP_SUCCESS){
-                setting->p2p_listen_port = stringToInt(value);
+                setting->p2p_listen_port = Utils->stringToInt(value);
             }
             if (strcmp(key,"--rpc-listen-port") == CMP_SUCCESS){
-                setting->rpc_listen_port = stringToInt(value);
+                setting->rpc_listen_port = Utils->stringToInt(value);
             }
             if (strcmp(key,"--auth-id") == CMP_SUCCESS){
                 strlcpy(setting->auth_id,value,strlen(value)+1);
@@ -148,7 +149,7 @@ void startCommandLineParser(int argc, const char** argv, CommandLineSetting* set
 }
 
 // 初始化成员
-CommandLineParser* registerCommandLineInstance(CommandLineParser* obj){
+CommandLineParser* LoadCommandLineParserModule(CommandLineParser* obj){
     obj->setting = (CommandLineSetting*)malloc(sizeof(CommandLineSetting));
     memset(obj->setting->auth_id,'\0',640);
     memset(obj->setting->env,'\0',16);

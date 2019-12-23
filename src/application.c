@@ -9,11 +9,14 @@
 #include "application.h"
 #include <stdlib.h>
 #include <stdbool.h>
+#include "module/utils.h"
 
 Application* App;
 
 void initialize(int argc, const char** argv){
-
+    
+    LoadUtilsModule();
+    
     App = (Application *)malloc(sizeof(Application));
     App->argc = argc;
     App->argv = argv;
@@ -26,6 +29,7 @@ void initialize(int argc, const char** argv){
     App->temp_manage = initTempManage();
     App->chain_manage = initChainManage();
     App->parserCommandLine = _parserCommandLine;
+    App->isDaemonize = _isDaemonize;
     App->checkEnv = _checkEnv;
     App->start = _start;
     return;
@@ -34,13 +38,14 @@ void initialize(int argc, const char** argv){
 AppLog* initAppLog(void){
     AppLog* ptr;
     ptr = (AppLog *)malloc(sizeof(AppLog));
+    loadAppLogModule(ptr);
     return ptr;
 };
 
 CommandLineParser* initCommandLineParser(){
     CommandLineParser* ptr;
     ptr = (CommandLineParser *)malloc(sizeof(CommandLineParser));
-    registerCommandLineInstance(ptr);
+    LoadCommandLineParserModule(ptr);
     return ptr;
 };
 
@@ -48,7 +53,7 @@ RuntimeEnv* initEnv(char* root){
     RuntimeEnv* ptr;
     ptr = (RuntimeEnv *)malloc(sizeof(RuntimeEnv));
     strlcpy(ptr->root,root,256);
-    registerRuntimeEnvInstance(ptr);
+    loadRuntimeEnvModule(ptr);
     return ptr;
 };
 
@@ -86,6 +91,10 @@ void _parserCommandLine(){
     startCommandLineParser(App->argc, App->argv, App->command_line_parser->setting);
 }
 
+bool _isDaemonize(){
+    return App->command_line_parser->setting->daemonize;
+};
+
 bool _checkEnv(void){
     return true;
 }
@@ -95,6 +104,7 @@ void _start(void){
 }
 
 void appClear(){
+    fclose(App->applog->fp);
     free(App->applog);
     free(App->command_line_parser);
     free(App->env);
@@ -104,4 +114,5 @@ void appClear(){
     free(App->temp_manage);
     free(App->chain_manage);
     free(App);
+    App = NULL;
 }

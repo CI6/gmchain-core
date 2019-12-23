@@ -13,6 +13,8 @@
 #include "basetypes.h"
 #include "global.h"
 
+#include "app_log.h"
+
 int main(int argc, const char** argv) {
     
     initialize(argc, argv);
@@ -20,18 +22,13 @@ int main(int argc, const char** argv) {
     
     bool result = App->env->isProduction();
     
-
-//    bool result;
-//    result = checkReady();
-//
-//    if (!result){
-//        printf("initialize failed!\n");
-//        appClear();
-//        return EXIT_FAILURE;
-//    }
-//    start();
+    // TEST
+    if (result){
+        App->applog->debug("[gmchain] hello ci6~ current env -> production");
+    } else {
+        App->applog->debug("[gmchain] hello ci6~ current env -> development");
+    }
     
-    printf("[gmchain] hello ci6~\n");
     appClear();
     return EXIT_SUCCESS;
 }

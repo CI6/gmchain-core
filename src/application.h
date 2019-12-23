@@ -34,6 +34,7 @@ typedef struct {
     bool (*checkEnv)(void);
     void (*start)(void);
     void (*parserCommandLine)(void);
+    bool (*isDaemonize)(void);
 } Application;
 
 void initialize(int, const char**);
@@ -48,9 +49,9 @@ static StorageManage* initStorageManage(void);
 static TempManage* initTempManage(void);
 static ChainManage* initChainManage(void);
 
-void _parserCommandLine(void);
-bool _checkEnv(void);
-void _start(void);
-
+static void _parserCommandLine(void);
+static bool _checkEnv(void);
+static void _start(void);
+static bool _isDaemonize(void);
 
 #endif /* application_h */

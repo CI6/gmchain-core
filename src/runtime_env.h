@@ -19,9 +19,9 @@ typedef struct {
     bool(*isDevelopment)(void);
 } RuntimeEnv;
 
-bool _isProuction(void);
-bool _isTest(void);
-bool _isDevelopment(void);
+inline bool _isProuction(void);
+inline bool _isTest(void);
+inline bool _isDevelopment(void);
 
 void registerRuntimeEnvInstance(RuntimeEnv*);
 
