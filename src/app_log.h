@@ -36,13 +36,6 @@ typedef struct {
 
 enum ENUM_LOG_LEVEL { LOG_TRACE, LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR, LOG_FATAL };
 
-//#define log_trace(...) writeLog(LOG_TRACE, __VA_ARGS__)
-//#define log_debug(...) writeLog(LOG_DEBUG, __VA_ARGS__)
-//#define log_info(...)  writeLog(LOG_INFO,  __VA_ARGS__)
-//#define log_warn(...)  writeLog(LOG_WARN,  __VA_ARGS__)
-//#define log_error(...) writeLog(LOG_ERROR, __VA_ARGS__)
-//#define log_fatal(...) writeLog(LOG_FATAL, __VA_ARGS__)
-
 static void _trace LOG_FMT_PARAMS;
 static void _debug LOG_FMT_PARAMS;
 static void _info LOG_FMT_PARAMS;
