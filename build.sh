@@ -41,6 +41,13 @@ compile_obj src/network
 
 echo "[link] $BASE_OBJECTS"
 
+# for mac
+# LDFLAGS += /usr/local/lib/libsecp256k1.a
+# ${CC} -o $BIN_DIR/$EXEFILE /usr/local/lib/libsecp256k1.a $BASE_OBJECTS 
+
+# for linux
+# ${CC} -L /usr/local/lib -static -lsecp256k1 -o $BIN_DIR/$EXEFILE $BASE_OBJECTS
+
 ${CC} -o $BIN_DIR/$EXEFILE $BASE_OBJECTS
 
 rm -r $OUT_DIR
