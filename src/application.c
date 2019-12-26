@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "module/utils.h"
+#include <string.h>
+#include <assert.h>
 
 Application* App;
 
@@ -52,7 +54,11 @@ CommandLineParser* initCommandLineParser(){
 RuntimeEnv* initEnv(char* root){
     RuntimeEnv* ptr;
     ptr = (RuntimeEnv *)malloc(sizeof(RuntimeEnv));
-    strlcpy(ptr->root,root,256);
+    
+    size_t len = strlen(root);
+    assert(len < 256);
+    strcpy(ptr->root,root);
+    ptr->root[len] = '\0';
     loadRuntimeEnvModule(ptr);
     return ptr;
 };

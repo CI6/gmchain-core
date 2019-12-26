@@ -11,6 +11,7 @@
 #include "basetypes.h"
 #include "module/utils.h"
 #include "global.h"
+#include <assert.h>
 
 
 void _printHelp()
@@ -67,8 +68,11 @@ void startCommandLineParser(int argc, const char** argv, CommandLineSetting* set
         memset(key,'\0',48);
         memset(value,'\0',640);
         
-        strlcpy(ptr_argv, *argv, strlen(*argv)+1);
-        len = strlen(ptr_argv);
+        size_t len = strlen(*argv);
+        assert(len < 690);
+        
+        strcpy(ptr_argv, *argv);
+        ptr_argv[len] = '\0';
         
         // 处理无分隔符参数 并 continue or break
         if (strcmp(*argv,"--help") == CMP_SUCCESS ){
@@ -123,11 +127,14 @@ void startCommandLineParser(int argc, const char** argv, CommandLineSetting* set
             }
         }
 
+        size_t value_len = strlen(value);
+        
         // 生成配置
         if (is_load_args){
             if (strcmp(key,"--data-path") == CMP_SUCCESS){
-                strlcpy(setting->dbpath, value, strlen(value)+1);
-                printf("gaga");
+                assert(value_len < 240);
+                strcpy(setting->dbpath, value);
+                (setting->dbpath)[value_len] = '\0';
             }
             if (strcmp(key,"--p2p-listen-port") == CMP_SUCCESS){
                 setting->p2p_listen_port = Utils->stringToInt(value);
@@ -136,10 +143,15 @@ void startCommandLineParser(int argc, const char** argv, CommandLineSetting* set
                 setting->rpc_listen_port = Utils->stringToInt(value);
             }
             if (strcmp(key,"--auth-id") == CMP_SUCCESS){
-                strlcpy(setting->auth_id,value,strlen(value)+1);
+                assert(value_len < 640);
+                strcpy(setting->auth_id,value);
+                (setting->auth_id)[value_len] = '\0';
             }
             if (strcmp(key,"--env") == CMP_SUCCESS){
-                strlcpy(setting->env,value,strlen(value)+1);
+                assert(value_len < 16);
+                strcpy(setting->env,value);
+                (setting->env)[value_len] = '\0';
+
             }
         }
         argv++;
