@@ -18,7 +18,6 @@ Application* App;
 void initialize(int argc, const char** argv){
     
     LoadUtilsModule();
-    
     App = (Application *)malloc(sizeof(Application));
     App->argc = argc;
     App->argv = argv;
