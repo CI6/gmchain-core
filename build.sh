@@ -32,8 +32,14 @@ compile_obj(){
     ${CC} -I $SRC_DIR $CFLAGS $DEBUG_FLAGS -c $COMPILE_DIR/$CFILE -o $OUT_DIR/$OFILE
     chmod -R 777 $OUT_DIR/$OFILE
     BASE_OBJECTS="$BASE_OBJECTS $OUT_DIR/$OFILE"
+
+    # CFILES="$CFILES $COMPILE_DIR/$CFILE"
   done
 }
+
+BASE_OBJECTS=""
+CFILES=""
+
 compile_obj src
 compile_obj src/chain
 compile_obj src/module
@@ -41,9 +47,11 @@ compile_obj src/network
 
 echo "[link] $BASE_OBJECTS"
 
-${CC} -o $BIN_DIR/$EXEFILE $BASE_OBJECTS 
+${CC} -o $BIN_DIR/$EXEFILE $BASE_OBJECTS -o $BIN_DIR/$EXEFILE -L/usr/local/lib -lsecp256k1
 
-rm -r $OUT_DIR
+# ${CC} -I $SRC_DIR $CFLAGS $DEBUG_FLAGS $CFILES -L/usr/local/lib -lsecp256k1 -o $BIN_DIR/$EXEFILE
+
+rm -r $OUT_DIR 
 
 echo "[finish] please run -> ./gmchian to start gmchian ~"
 

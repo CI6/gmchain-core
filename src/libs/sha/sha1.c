@@ -2,7 +2,7 @@
 //  sha1.c
 //  gmchain-core
 //
-//  Created by kek on 2019/12/25.
+//  Created by AnonymityMaster on 2019/12/25.
 //  Copyright © 2019 ci6. All rights reserved.
 //
 

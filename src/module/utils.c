@@ -39,16 +39,29 @@ int _stringToInt(char *str) {
     return n;
 }
 
-char* _nowTime(char* buf){
+void _nowTime(char* buf){
     time_t _time = time(NULL);
     struct tm *st_time = localtime(&_time);
     strftime(buf, 32, "%Y-%m-%d %H:%M:%S", st_time);
-    return buf;
+    return;
+}
+
+bool _equals(const char* str_a,const char* str_b){
+  if(strlen(str_a) != strlen(str_b)){
+    return false;
+  }
+  for(int i=0; i < strlen((char*)str_a); i++){
+    if( str_a[i] != str_b[i]){
+      return false;
+    }
+  }
+  return true;
 }
 
 void LoadUtilsModule(){
     Utils = (_Utils*)malloc(sizeof(_Utils));
     Utils->stringToInt = _stringToInt;
     Utils->nowTime = _nowTime;
+    Utils->equals = _equals;
 }
 

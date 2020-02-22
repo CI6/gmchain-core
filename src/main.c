@@ -14,6 +14,20 @@
 #include "global.h"
 #include "app_log.h"
 
+#include "libs/secp256k1/secp256k1.h"
+
+/**
+ *  获取上下文
+ */
+static secp256k1_context* get_static_context()
+{
+    static secp256k1_context* ctx_both = 0;
+    if (!ctx_both){
+        ctx_both  = secp256k1_context_create(SECP256K1_CONTEXT_VERIFY | SECP256K1_CONTEXT_SIGN);
+    }
+    return ctx_both;
+}
+
 int main(int argc, const char** argv) {
     
     // 初始化 app
@@ -59,6 +73,11 @@ int main(int argc, const char** argv) {
         App->applog->debug("[gmchain] hello ci6~ current env -> development");
     }
 
+    
+    secp256k1_context* ctx_both = get_static_context();
+    
+    printf("secp256k1_context address -> %p\n",ctx_both);
+    
     appClear();
     return EXIT_SUCCESS;
 }
