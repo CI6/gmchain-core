@@ -18,6 +18,11 @@
 #ifndef  RMD160H           /* make sure this file is read only once */
 #define  RMD160H
 
+#ifndef _UINT32_T
+#define _UINT32_T
+typedef unsigned int uint32_t;
+#endif /* _UINT32_T */
+
 /********************************************************************/
 
 /* typedef 8 and 32 bit types, resp.  */

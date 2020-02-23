@@ -199,6 +199,6 @@ void LoadUtilsModule(){
     Utils->sha256 = _sha256;
     Utils->sha512 = _sha512;
     Utils->base58Encode = _base58Encode;
-    Utils->base58Decode = _base58Decode;    
+    Utils->base58Decode = _base58Decode;
 }
 
