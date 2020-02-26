@@ -23,6 +23,6 @@ inline bool _isProuction(void);
 inline bool _isTest(void);
 inline bool _isDevelopment(void);
 
-void registerRuntimeEnvInstance(RuntimeEnv*);
+void loadRuntimeEnvModule(RuntimeEnv*);
 
 #endif /* runtime_env_h */

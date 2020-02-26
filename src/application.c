@@ -71,6 +71,7 @@ KeyPairManage* initKeyPairManage(){
 CryptoManage* initCryptoManage(){
     CryptoManage* ptr;
     ptr = (CryptoManage *)malloc(sizeof(CryptoManage));
+    loadCryptoManageModule(ptr);
     return ptr;
 }
 

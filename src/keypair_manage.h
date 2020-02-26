@@ -12,6 +12,11 @@
 #include <stdio.h>
 
 typedef struct {
+    
+} GMCKeyPair;
+
+
+typedef struct {
 
 } KeyPairManage;
 
