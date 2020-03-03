@@ -1,6 +1,7 @@
 EXEFILE=gmchain
 CC=gcc
-CFLAGS="-std=c99 -Wall -g -pipe -v -Q -pedantic -O2"
+# CFLAGS="-std=c99 -Wall -g -pipe -v -Q -pedantic -O2"
+CFLAGS="-std=c99"
 DEBUG_FLAGS="-DDEVELOPMENT"
 BASE_DIR=$(pwd)
 SRC_DIR=$BASE_DIR/src
@@ -59,7 +60,8 @@ compile_dir src
 
 echo "[link] $BASE_OBJECTS"
 
-${CC} -o $BIN_DIR/$EXEFILE $BASE_OBJECTS -o $BIN_DIR/$EXEFILE -L/usr/local/lib -lsecp256k1
+${CC} -o $BIN_DIR/$EXEFILE $BASE_OBJECTS -o $BIN_DIR/$EXEFILE -Llibs/mac -lsecp256k1 -lgmp
+# ${CC} -o $BIN_DIR/$EXEFILE $BASE_OBJECTS -o $BIN_DIR/$EXEFILE -L/usr/local/lib -lsecp256k1
 
 # ${CC} -I $SRC_DIR $CFLAGS $DEBUG_FLAGS $CFILES -L/usr/local/lib -lsecp256k1 -o $BIN_DIR/$EXEFILE
 
