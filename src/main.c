@@ -13,7 +13,7 @@
 #include "basetypes.h"
 #include "global.h"
 #include "app_log.h"
-
+#include "test/test_unit.h"
 #include "libs/secp256k1/secp256k1.h"
 
 /**
@@ -72,6 +72,8 @@ int main(int argc, const char** argv) {
     } else {
         App->applog->debug("[gmchain] hello ci6~ current env -> development");
     }
+    testMain();
+    
 
     
     secp256k1_context* ctx_both = get_static_context();

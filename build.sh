@@ -56,6 +56,7 @@ compile_dir src/libs/aes
 compile_dir src/chain
 compile_dir src/module
 compile_dir src/network
+compile_dir src/test
 compile_dir src
 
 echo "[link] $BASE_OBJECTS"

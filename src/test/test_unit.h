@@ -11,4 +11,6 @@
 
 #include <stdio.h>
 
+void testMain(void);
+
 #endif /* test_unit_h */
